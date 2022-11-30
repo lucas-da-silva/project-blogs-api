@@ -10,7 +10,7 @@ const validateCreate = async (displayName, email, password) => {
     );
   }
   if (!regexEmail.test(email)) {
-    return formatError('"email" must be a valid email"');
+    return formatError('"email" must be a valid email');
   }
   if (password.length < 6) {
     return formatError('"password" length must be at least 6 characters long');

@@ -5,7 +5,13 @@ const { validateCreate } = require('./validations/validateUser');
 const create = async (displayName, email, password, image) => {
   const isInvalid = await validateCreate(displayName, email, password);
   if (isInvalid.type) return isInvalid;
-  return { type: null, message: 'token' };
+  
+  await User.create({ displayName, email, password, image });
+  
+  const data = image ? { displayName, email, image } : { displayName, email };
+  const token = createToken(data); 
+  
+  return { type: null, message: { token } };
 };
 
 module.exports = {

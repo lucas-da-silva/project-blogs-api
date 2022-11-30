@@ -1,10 +1,14 @@
 const { Router } = require('express');
-const { 
+const {
   loginController,
   userController,
   categoryController,
 } = require('./controllers');
-const { validateLogin, validateToken } = require('./middlewares');
+const {
+  validateLogin,
+  validateToken,
+  validateCategory,
+} = require('./middlewares');
 
 const router = Router();
 
@@ -12,6 +16,11 @@ router.post('/login', validateLogin, loginController.login);
 router.post('/user', userController.create);
 router.get('/user', validateToken, userController.getAll);
 router.get('/user/:id', validateToken, userController.getById);
-router.post('/categories', validateToken, categoryController.create);
+router.post(
+  '/categories',
+  validateToken,
+  validateCategory,
+  categoryController.create,
+);
 
 module.exports = router;

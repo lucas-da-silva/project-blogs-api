@@ -1,4 +1,4 @@
-const userService = require('../services/user.service');
+const { userService } = require('../services');
 const { mapError } = require('../utils/errorMap');
 
 const create = async (req, res) => {

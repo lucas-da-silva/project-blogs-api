@@ -50,9 +50,14 @@ const update = async (id, title, content, tokenId) => {
   return { type: null, message };
 };
 
+const deleteById = async (id) => {
+  
+};
+
 module.exports = {
   create,
   getAll,
   getById,
   update,
+  deleteById,
 };

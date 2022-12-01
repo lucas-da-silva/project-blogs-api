@@ -16,10 +16,13 @@ const validateCreate = async (categoryIds) => {
 };
 
 const validateOwner = async (id, tokenId) => {
-  const { userId } = await BlogPost.findOne({ where: { id } });
-  if (userId !== tokenId) {
+  const post = await BlogPost.findOne({ where: { id } });
+
+  if (!post) return { type: 'NOT_FOUND', message: 'Post does not exist' };
+  if (post.userId !== tokenId) {
     return { type: 'UNAUTHORIZED', message: 'Unauthorized user' };
   }
+  
   return { type: null };
 };
 

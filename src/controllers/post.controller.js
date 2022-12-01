@@ -48,9 +48,11 @@ const deleteById = async (req, res) => {
     params: { id },
     user: { id: tokenId },
   } = req;
-  const { type, message } = await postService.deleteById(id, tokenId);
-  if (type) return res.status(mapError(type)).json({ message });
-  return res.status(200).json(message);
+  const error = await postService.deleteById(id, tokenId);
+  if (error.type) {
+    return res.status(mapError(error.type)).json({ message: error.message });
+  }
+  return res.status(204).end();
 };
 
 module.exports = {

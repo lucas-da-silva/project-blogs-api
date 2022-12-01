@@ -53,6 +53,8 @@ const update = async (id, title, content, tokenId) => {
 const deleteById = async (id, tokenId) => {
   const isInvalid = await validateOwner(id, tokenId);
   if (isInvalid.type) return isInvalid;
+  await BlogPost.destroy({ where: { id } });
+  return { type: null };
 };
 
 module.exports = {

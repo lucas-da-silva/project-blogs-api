@@ -1,4 +1,5 @@
 const { BlogPost, PostCategory, User, Category } = require('../models');
+const { queryBySearch } = require('../utils/querys');
 const { validateCreate, validateOwner } = require('./validations/validatePost');
 
 const create = async (title, content, userId, categoryIds) => {
@@ -41,10 +42,7 @@ const update = async (id, title, content, tokenId) => {
   const isInvalid = await validateOwner(id, tokenId);
   if (isInvalid.type) return isInvalid;
 
-  await BlogPost.update(
-    { title, content }, 
-    { where: { id } },
-  );
+  await BlogPost.update({ title, content }, { where: { id } });
 
   const { message } = await getById(id);
   return { type: null, message };
@@ -57,10 +55,16 @@ const deleteById = async (id, tokenId) => {
   return { type: null };
 };
 
+const getBySearch = async (term) => {
+  const posts = await BlogPost.findAll(queryBySearch(term));
+  return posts;
+};
+
 module.exports = {
   create,
   getAll,
   getById,
   update,
   deleteById,
+  getBySearch,
 };

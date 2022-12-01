@@ -15,7 +15,7 @@ const validateCreate = async (categoryIds) => {
   return { type: null };
 };
 
-const validateUpdate = async (id, tokenId) => {
+const validateOwner = async (id, tokenId) => {
   const { userId } = await BlogPost.findOne({ where: { id } });
   if (userId !== tokenId) {
     return { type: 'UNAUTHORIZED', message: 'Unauthorized user' };
@@ -25,5 +25,5 @@ const validateUpdate = async (id, tokenId) => {
 
 module.exports = {
   validateCreate,
-  validateUpdate,
+  validateOwner,
 };

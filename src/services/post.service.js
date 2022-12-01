@@ -1,5 +1,5 @@
 const { BlogPost, PostCategory, User, Category } = require('../models');
-const { validateCreate, validateUpdate } = require('./validations/validatePost');
+const { validateCreate, validateOwner } = require('./validations/validatePost');
 
 const create = async (title, content, userId, categoryIds) => {
   const isInvalid = await validateCreate(categoryIds);
@@ -38,7 +38,7 @@ const getById = async (id) => {
 };
 
 const update = async (id, title, content, tokenId) => {
-  const isInvalid = await validateUpdate(id, tokenId);
+  const isInvalid = await validateOwner(id, tokenId);
   if (isInvalid.type) return isInvalid;
 
   await BlogPost.update(
@@ -50,8 +50,9 @@ const update = async (id, title, content, tokenId) => {
   return { type: null, message };
 };
 
-const deleteById = async (id) => {
-  
+const deleteById = async (id, tokenId) => {
+  const isInvalid = await validateOwner(id, tokenId);
+  if (isInvalid.type) return isInvalid;
 };
 
 module.exports = {

@@ -22,7 +22,6 @@ const getById = async (id) => {
     where: { id },
     attributes: { exclude: 'password' }, 
   });
-  console.log(user);
   if (!user) return { type: 'NOT_FOUND', message: 'User does not exist' };
   return { type: null, message: user };
 };

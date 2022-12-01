@@ -3,11 +3,13 @@ const {
   loginController,
   userController,
   categoryController,
+  postController,
 } = require('./controllers');
 const {
   validateLogin,
   validateToken,
   validateCategory,
+  validatePost,
 } = require('./middlewares');
 
 const router = Router();
@@ -23,5 +25,6 @@ router.post(
   categoryController.create,
 );
 router.get('/categories', validateToken, categoryController.getAll);
+router.post('/post', validateToken, validatePost, postController.create);
 
 module.exports = router;

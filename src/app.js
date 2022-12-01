@@ -9,7 +9,7 @@ const {
 const app = express();
 
 app.use(express.json());
-app.post('/oi', (req, res) => res.status(200).send('oi'));
+
 app.use('/login', loginRoutes);
 app.use('/user', userRoutes);
 app.use('/categories', categoriesRoutes);

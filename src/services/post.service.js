@@ -1,5 +1,5 @@
 const { BlogPost, PostCategory, User, Category } = require('../models');
-const { validateCreate } = require('./validations/validatePost');
+const { validateCreate, validateUpdate } = require('./validations/validatePost');
 
 const create = async (title, content, userId, categoryIds) => {
   const isInvalid = await validateCreate(categoryIds);
@@ -36,8 +36,15 @@ const getById = async (id) => {
   if (!post) return { type: 'NOT_FOUND', message: 'Post does not exist' };
   return { type: null, message: post };
 };
+
+const update = async (id, title, content, tokenId) => {
+  const isInvalid = await validateUpdate(id, tokenId);
+  if (isInvalid.type) return isInvalid;
+};
+
 module.exports = {
   create,
   getAll,
   getById,
+  update,
 };

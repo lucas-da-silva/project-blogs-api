@@ -1,7 +1,7 @@
 const { User } = require('../models');
 const { createToken } = require('../utils/jwtFunctions');
 
-const login = async (email, password) => {
+const create = async (email, password) => {
   const user = await User.findOne({ where: { email, password } });
   if (!user) return { type: 'BAD_REQUEST', message: 'Invalid fields' };
   const token = createToken(email);
@@ -9,5 +9,5 @@ const login = async (email, password) => {
 };
 
 module.exports = {
-  login,
+  create,
 };

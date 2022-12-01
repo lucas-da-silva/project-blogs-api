@@ -40,6 +40,14 @@ const getById = async (id) => {
 const update = async (id, title, content, tokenId) => {
   const isInvalid = await validateUpdate(id, tokenId);
   if (isInvalid.type) return isInvalid;
+
+  await BlogPost.update(
+    { title, content }, 
+    { where: { id } },
+  );
+
+  const { message } = await getById(id);
+  return { type: null, message };
 };
 
 module.exports = {

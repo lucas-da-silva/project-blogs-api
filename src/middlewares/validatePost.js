@@ -13,8 +13,8 @@ const create = (req, res, next) => {
 };
 
 const update = (req, res, next) => {
-  const propertyRequired = ['title', 'content'];
-  if (!propertyRequired.every((property) => property in req.body)) {
+  const { title, content } = req.body;
+  if (!title || !content) {
     return res.status(400).json({ message: 'Some required fields are missing' });
   }
   return next();

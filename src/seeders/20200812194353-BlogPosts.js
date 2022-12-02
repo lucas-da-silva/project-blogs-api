@@ -4,16 +4,16 @@ module.exports = {
       [
         {
           id: 1,
-          title: 'Post do Ano',
-          content: 'Melhor post do ano',
+          title: 'Post of the year',
+          content: 'Best post of the year',
           user_id: 1,
           published: new Date('2011-08-01T19:58:00.000Z'),
           updated: new Date('2011-08-01T19:58:51.000Z'),
         },
         {
           id: 2,
-          title: 'Vamos que vamos',
-          content: 'Foguete não tem ré',
+          title: 'Let is go',
+          content: 'Rocket has no reverse',
           user_id: 1,
           published: new Date('2011-08-01T19:58:00.000Z'),
           updated: new Date('2011-08-01T19:58:51.000Z'),

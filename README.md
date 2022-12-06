@@ -86,6 +86,9 @@ There are multiple validations to perform a request, from `middlewares`, functio
 ### User routes
 
 - `POST /user`: adds a new `user` to the database and returns a `token`;
+
+> Keep the password, as it will be encrypted in the database;
+
 <details>
     <summary>The request body should follow the format below</summary>
 
@@ -167,6 +170,10 @@ There are multiple validations to perform a request, from `middlewares`, functio
 
 - `GET /post/search?q=:searchTerm`: fetch all blog `posts` based on `q` from the database, if it exists;
 
+## Extras
+
+I used the [**bcrypt**](https://www.npmjs.com/package/bcrypt) library to `encrypt` user `passwords` in the database.
+
 ## Technologies used
 
 <p>
@@ -191,5 +198,6 @@ There are multiple validations to perform a request, from `middlewares`, functio
 </p>
 
 - [nodemon](https://nodemon.io/)
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
 
 > I got the badges from github from [Iuri](https://github.com/iuricode);

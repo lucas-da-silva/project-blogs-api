@@ -1,13 +1,13 @@
-const bcript = require('bcrypt');
+const { genSalt, hash, compare } = require('bcrypt');
 
 const getHash = async (data) => {
-  const salt = await bcript.genSalt(10);
-  const crypt = await bcript.hash(data, salt);
+  const salt = await genSalt(10);
+  const crypt = await hash(data.toString(), salt);
   return crypt;
 };
 
-const getCompare = async (data, cryptData) => bcript.compare(data, cryptData);  
-
+const getCompare = async (data, cryptData) => compare(data, cryptData);  
+ 
 module.exports = {
   getHash,
   getCompare,

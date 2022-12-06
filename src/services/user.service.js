@@ -1,12 +1,14 @@
 const { User } = require('../models');
 const { createToken } = require('../utils/jwtFunctions');
+const { getHash } = require('../utils/bCryptFunctions');
 const { validateCreate } = require('./validations/validateUser');
 
 const create = async (displayName, email, password, image) => {
   const isInvalid = await validateCreate(displayName, email, password);
   if (isInvalid.type) return isInvalid;
 
-  await User.create({ displayName, email, password, image });
+  const cryptPassword = await getHash(password);
+  await User.create({ displayName, email, password: cryptPassword, image });
 
   const data = image ? { displayName, email, image } : { displayName, email };
   const token = createToken(data);

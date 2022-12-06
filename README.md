@@ -12,6 +12,7 @@ In this application, you can create a user and delete it, login, register new ca
 <summary><strong>Installation instructions</strong></summary>
 
 ### Clone the repository
+
 ```bash
 git clone git@github.com:lucas-da-silva/project-blogs-api.git
 ```
@@ -23,23 +24,29 @@ cd project-blogs-api
 ```
 
 ### Climbing the containers (docker is needed)
+
 ```bash
 docker-compose up -d
 ```
 
 ### Entering the Node.js container
+
 ```bash
 docker exec -it blogs_api bash
 ```
 
 ### Install dependencies
+
 ```bash
 npm install
 ```
+
 ### Run the application (will create the database, tables and values for them)
+
 ```bash
 npm start
 ```
+
 > You can use [Thunder Client](https://www.thunderclient.com/) or [Insomnia](https://insomnia.rest/) (or whatever) to check the API.
 
 ### To stop containers
@@ -51,9 +58,10 @@ docker-compose down
 </details>
 
 ## Aplication
+
 The **[sequelize](https://sequelize.org/)** package is used to map the database entities, generate the connection and serve as the Model layer of the architecture used here, which is the **MSC** (**M**odel, **S**ervice and **C**ontroller).
 
-In addition to creating all the routes, I developed the migrations and the models, defining the table relationships in the models, which are `1:1`, `1:N` and `N:N`. 
+In addition to creating all the routes, I developed the migrations and the models, defining the table relationships in the models, which are `1:1`, `1:N` and `N:N`.
 
 The **[jwt](https://jwt.io/)** library was also used to generate a token, which is necessary to have complete access to the application, without a token, you cannot access the routes and manipulate the database.
 
@@ -64,7 +72,8 @@ There are multiple validations to perform a request, from `middlewares`, functio
 - `POST /login`: returns a `token`;
 <details>
     <summary>The request body should follow the format below</summary>
-    
+
+
 ```JSON
     {
       "email": "lewishamilton@gmail.com",
@@ -79,16 +88,17 @@ There are multiple validations to perform a request, from `middlewares`, functio
 - `POST /user`: adds a new `user` to the database and returns a `token`;
 <details>
     <summary>The request body should follow the format below</summary>
-    
+
+
 ```JSON
     {
       "displayName": "Brett Wiltshire",
       "email": "brett@email.com",
       "password": "123456",
       "image": "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/brett.png"
-      // image is not required
     }
 ```
+
 </details>
 
 - `GET /user`: returns all database `users`;
@@ -96,6 +106,7 @@ There are multiple validations to perform a request, from `middlewares`, functio
 - `GET /user/:id`: returns the `user` based on the database `id` if it exists;
 
 > The following endpoint needs a **valid token** in the request `header`, within the `Authorization` key;
+
 - `DELETE /user/me`: delete you from the database, based on the `id` inside your `token`;
 
 ### Categories routes
@@ -103,12 +114,14 @@ There are multiple validations to perform a request, from `middlewares`, functio
 - `POST /categories`: adds a new `category` to the database;
 <details>
     <summary>The request body should follow the format below</summary>
-    
+
+
 ```JSON
     {
       "name": "Typescript"
     }
 ```
+
 </details>
 
 - `GET /categories`: returns all database `categories`;
@@ -120,7 +133,8 @@ There are multiple validations to perform a request, from `middlewares`, functio
 - `POST /post`: add a new blog post and link it to categories in your tables in the database;
 <details>
     <summary>The request body should follow the format below</summary>
-    
+
+
 ```JSON
     {
       "title": "Latest updates, August 1st",
@@ -128,6 +142,7 @@ There are multiple validations to perform a request, from `middlewares`, functio
       "categoryIds": [1, 2]
     }
 ```
+
 </details>
 
 - `GET /post`: returns all database all blog `posts`, `user` owner and database `categories`;
@@ -137,13 +152,15 @@ There are multiple validations to perform a request, from `middlewares`, functio
 - `PUT /post/:id`: alters a `post` in the database if it exists, to change you have to be the `owner` of the post (`tokenId === user_id`);
 <details>
     <summary>The request body should follow the format below</summary>
-    
+
+
 ```JSON
     {
       "title": "Latest updates, August 1st",
       "content": "The whole text for the blog post goes here in this key"
     }
 ```
+
 </details>
 
 - `DELETE /post/:id`: delete a blog `post` based on database `id` if it exists;
@@ -151,6 +168,7 @@ There are multiple validations to perform a request, from `middlewares`, functio
 - `GET /post/search?q=:searchTerm`: fetch all blog `posts` based on `q` from the database, if it exists;
 
 ## Technologies used
+
 <p>
 <a href='https://nodejs.org/en/'>
   <img src='https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white' alt='Node.js' />

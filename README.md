@@ -49,7 +49,7 @@ npm install
 npm start
 ```
 
-> You can use [Thunder Client](https://www.thunderclient.com/) or [Insomnia](https://insomnia.rest/) (or whatever) to check the API.
+> You can use [Thunder Client](https://www.thunderclient.com/) or [Insomnia](https://insomnia.rest/) (or whatever) to check API routes.
 
 ### To stop containers
 
@@ -207,5 +207,3 @@ I used the [**bcrypt**](https://www.npmjs.com/package/bcrypt) library to `encryp
 
 - [nodemon](https://nodemon.io/)
 - [bcrypt](https://www.npmjs.com/package/bcrypt)
-
-> I got the badges from github from [Iuri](https://github.com/iuricode);

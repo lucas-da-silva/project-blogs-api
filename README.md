@@ -6,6 +6,8 @@ I developed an API and a database to **CRUD** (**C**reate, **R**ead, **U**pdate,
 
 In this application, you can create a user and delete it, login, register new categories and retrieve them, and the main thing, make a `CRUD` of posts. To do this, it is necessary to generate a token (login with an existing user).
 
+---
+
 ## Installation
 
 <details>
@@ -56,6 +58,8 @@ docker-compose down
 ```
 
 </details>
+
+---
 
 ## Aplication
 
@@ -170,9 +174,13 @@ There are multiple validations to perform a request, from `middlewares`, functio
 
 - `GET /post/search?q=:searchTerm`: fetch all blog `posts` based on `q` from the database, if it exists;
 
+---
+
 ## Extras
 
 I used the [**bcrypt**](https://www.npmjs.com/package/bcrypt) library to `encrypt` user `passwords` in the database.
+
+---
 
 ## Technologies used
 
